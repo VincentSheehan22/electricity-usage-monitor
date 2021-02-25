@@ -1,5 +1,3 @@
-
-
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -32,31 +30,32 @@ def run_menu():
 
     return option
 
+
 def menu_option_1():
     df_entry = get_entry()
     add_to_df(df_log, df_entry)
 
 
-#def menu_option_2():
-
-
-#def menu_option_3():
-
-
-#def menu_option_4():
-
-
-
 if __name__ == '__main__':
     # To do: load CSV as data frame. If not present create empty data frame
-    #run_menu()
-    #df_log = pd.DataFrame([], columns=["Date", "Reading"])
-    #df_entry = get_entry()
-    #print(add_to_df(df_log, df_entry))
-    # Write data frame to CSV - to persist over separate runs.
+    while True:
+        menu_option = run_menu()
 
-    df_readings = pd.read_csv("Meter Readings.csv")
+        if menu_option == '1':
+            df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
+            df_entry = get_entry()
+            df_updated = add_to_df(df_readings, df_entry)
+            csv = df_updated.to_csv("Meter Readings.csv", index=False)
+        elif menu_option == '2':
+            df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
+            plt.plot(df_readings["Date"], df_readings["Reading"])
+            plt.show()
+        elif menu_option == '3':
+            df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
+            print(df_readings)
+        elif menu_option == '4':
+            exit()
+        else:
+            print("Enter 1-4.")
 
-    plt.plot(df_readings["Date"], df_readings["Reading"])
-    plt.show()
 
