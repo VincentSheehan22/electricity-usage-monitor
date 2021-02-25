@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# Get input from user, and return as data frame.
 def get_entry():
+    """Get input from user, and return as data frame."""
     date = input("Input date (yyyy-mm-dd): ")
     reading = input("Input reading (kWh): ")
 
@@ -12,15 +12,15 @@ def get_entry():
     return df_entry
 
 
-# Add entry as new row in main data frame.
 def add_to_df(df_log, df_entry):
+    """Add entry as new row in main data frame."""
     df_out = df_log.append(df_entry)
 
     return df_out
 
 
-# Launch menu.
 def run_menu():
+    """Launch menu."""
     option = input("""Select option: 
     1 - Add new entry.
     2 - Display trend.
@@ -31,13 +31,7 @@ def run_menu():
     return option
 
 
-def menu_option_1():
-    df_entry = get_entry()
-    add_to_df(df_log, df_entry)
-
-
 if __name__ == '__main__':
-    # To do: load CSV as data frame. If not present create empty data frame
     while True:
         menu_option = run_menu()
 

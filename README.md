@@ -10,7 +10,7 @@ To do:
     * [x] Display trend;
     * [x] Display data frame;
     * [x] Exit.
-* [ ] Data frame to be stored persistently as CSV.
+* [x] Data frame to be stored persistently as CSV.
 * [ ] Delta trend.
 * [ ] Input validation.
     
