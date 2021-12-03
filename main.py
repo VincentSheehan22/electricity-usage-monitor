@@ -19,6 +19,22 @@ def add_to_df(df_log, df_entry):
     return df_out
 
 
+def plot_trend():
+    """Plot trend of meter readings."""
+    df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
+    plt.plot(df_readings["Date"], df_readings["Reading"])
+    plt.show()
+
+
+def plot_delta_trend():
+    """Plot trend of monthly delta (n minus n-1) in meter readings"""
+    pass
+
+def show_data_frame():
+    """Print the meter readings data frame to sceen."""
+    pass
+
+
 def run_menu():
     """Launch menu."""
     option = input("""Select option: 
@@ -41,9 +57,7 @@ if __name__ == '__main__':
             df_updated = add_to_df(df_readings, df_entry)
             csv = df_updated.to_csv("Meter Readings.csv", index=False)
         elif menu_option == '2':
-            df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
-            plt.plot(df_readings["Date"], df_readings["Reading"])
-            plt.show()
+            plot_trend()
         elif menu_option == '3':
             df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
             print(df_readings)
