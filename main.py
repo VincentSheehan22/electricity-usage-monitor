@@ -22,15 +22,21 @@ def add_to_df(df_log, df_entry):
 def plot_trend():
     """Plot trend of meter readings."""
     df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
+
     plt.plot(df_readings["Date"], df_readings["Reading"])
     plt.show()
 
 
 def plot_delta_trend():
-    """Plot trend of monthly delta (n minus n-1) in meter readings"""
+    """Plot trend of delta (n - (n-1)) in meter readings"""
     df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
-    plt.plot(df_readings["Date"], df_readings["Reading"])
+    df_deltas = pd.DataFrame(columns=["Value"])
+
+    df_deltas["Value"] = df_readings["Reading"].diff()
+
+    plt.plot(df_deltas["Value"])
     plt.show()
+
 
 def show_data_frame():
     """Print the meter readings data frame to screen."""
@@ -43,8 +49,9 @@ def run_menu():
     option = input("""Select option: 
     1 - Add new entry.
     2 - Display trend.
-    3 - Display data frame.
-    4 - Exit.
+    3 - Display delta trend.
+    4 - Display data frame.
+    5 - Exit.
     """)
 
     return option
@@ -62,10 +69,12 @@ if __name__ == '__main__':
         elif menu_option == '2':
             plot_trend()
         elif menu_option == '3':
-            show_data_frame()
+            plot_delta_trend()
         elif menu_option == '4':
+            show_data_frame()
+        elif menu_option == '5':
             exit()
         else:
-            print("Enter 1-4.")
+            print("Enter 1-5.")
 
 
