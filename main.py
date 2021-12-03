@@ -28,11 +28,14 @@ def plot_trend():
 
 def plot_delta_trend():
     """Plot trend of monthly delta (n minus n-1) in meter readings"""
-    pass
+    df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
+    plt.plot(df_readings["Date"], df_readings["Reading"])
+    plt.show()
 
 def show_data_frame():
-    """Print the meter readings data frame to sceen."""
-    pass
+    """Print the meter readings data frame to screen."""
+    df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
+    print(df_readings)
 
 
 def run_menu():
@@ -59,8 +62,7 @@ if __name__ == '__main__':
         elif menu_option == '2':
             plot_trend()
         elif menu_option == '3':
-            df_readings = pd.read_csv("Meter Readings.csv", index_col=False)
-            print(df_readings)
+            show_data_frame()
         elif menu_option == '4':
             exit()
         else:
